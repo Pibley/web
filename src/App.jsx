@@ -190,7 +190,7 @@ export default function App() {
                   pibley2@gmail.com
                 </a>
                 <a
-                  href="https://wa.me/56978940474"
+                  href="https://wa.me/56940421175"
                   target="_blank"
                   rel="noreferrer"
                   className="px-6 py-3.5 rounded-full glass-pill text-white font-semibold text-sm hover:bg-white/10 transition-colors inline-flex items-center gap-2"

@@ -243,19 +243,14 @@ export default function Hero({ onOpenShowreel }) {
             {/* Quick Micro-stats */}
             <div className="hero-anim-item mt-10 pt-6 border-t border-white/10 grid grid-cols-3 gap-6 sm:gap-8 max-w-lg w-full">
               <div>
-                <p className="text-2xl sm:text-3xl font-extrabold text-white font-mono">10+</p>
+                <p className="text-2xl sm:text-3xl font-extrabold text-white font-mono">6+</p>
                 <p className="text-xs text-[#94a3b8] uppercase tracking-wider mt-0.5">Años de experiencia</p>
               </div>
               <div>
                 <p className="text-2xl sm:text-3xl font-extrabold text-white font-mono">120+</p>
                 <p className="text-xs text-[#94a3b8] uppercase tracking-wider mt-0.5">Proyectos masterizados</p>
               </div>
-              <div>
-                <p className="text-2xl sm:text-3xl font-extrabold text-rose-400 font-mono">4K/8K</p>
-                <p className="text-xs text-[#94a3b8] uppercase tracking-wider mt-0.5">Flujo RAW DCI</p>
-              </div>
             </div>
-
           </div>
 
           {/* Right Column: Featured Showreel Spotlight Card */}
