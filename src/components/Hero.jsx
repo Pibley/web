@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+import { motion } from 'framer-motion';
 import { 
   Play, 
   Sparkles, 
