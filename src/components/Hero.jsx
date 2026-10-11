@@ -17,9 +17,9 @@ import {
 
 // Custom SVG Icons for Vimeo & Behance to maintain premium brand identity
 
-const BehanceIcon = ({ className }) => (
+const XIcon = ({ className }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M22 7h-7v2h7V7zm1.726 10c-.442 1.297-1.646 2.16-3.27 2.16-2.203 0-3.666-1.636-3.666-4.148 0-2.535 1.574-4.148 3.778-4.148 2.08 0 3.42 1.488 3.42 3.844v.667h-5.074c.05 1.157.777 1.892 1.842 1.892.83 0 1.428-.418 1.67-1.067h1.3zm-3.23-3.415c-.03-.96-.67-1.583-1.636-1.583-.942 0-1.614.61-1.677 1.583h3.313zM6.92 13.882c1.23 0 2.079-.589 2.079-1.745 0-.84-.52-1.42-1.378-1.554.67-.184 1.15-.724 1.15-1.472 0-1.104-.84-1.671-2.11-1.671H2v8h4.92v-1.558zm-2.85-6.223h2.614c.64 0 1.02.26 1.02.736 0 .478-.38.736-1.02.736H4.07V7.659zm0 4.662v-1.71h2.798c.7 0 1.11.285 1.11.855 0 .57-.41.855-1.11.855H4.07z"/>
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
   </svg>
 );
 
@@ -107,8 +107,8 @@ export default function Hero({ onOpenShowreel }) {
   };
 
   const socialLinks = [
-    { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/pibley07', color: 'hover:text-[#e1306c]'},
-    { name: 'X', icon: Twitter, href: 'https://x.com/Pibley1', color: 'hover:text-[#e1306c]' },
+    { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/pibley07', color: 'hover:text-[#e1306c]', label: '@pibley07' },
+    { name: 'X', icon: XIcon, href: 'https://x.com/Pibley1', color: 'hover:text-white', label: '@Pibley1' },
   ];
 
   return (

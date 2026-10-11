@@ -16,7 +16,6 @@ export default function Navbar({ onOpenShowreel }) {
 
   const navLinks = [
     { name: 'Proyectos', href: '#proyectos' },
-    { name: 'Sobre mí', href: '#sobre-mi' },
     { name: 'Servicios', href: '#servicios' },
     { name: 'Contacto', href: '#contacto' },
   ];
@@ -36,10 +35,12 @@ export default function Navbar({ onOpenShowreel }) {
           id="brand-logo"
           className="group flex items-center gap-3 text-white transition-transform duration-300 hover:scale-[1.02]"
         >
-          <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-[#e11d48] to-[#6366f1] p-[1px] shadow-lg shadow-[#e11d48]/20 group-hover:shadow-[#e11d48]/40 transition-shadow">
-            <div className="w-full h-full bg-[#0d0d11] rounded-[11px] flex items-center justify-center">
-              <Clapperboard className="w-5 h-5 text-[#f8fafc] group-hover:text-[#e11d48] transition-colors duration-300" />
-            </div>
+          <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-[#e11d48] to-[#6366f1] p-[1.5px] shadow-lg shadow-[#e11d48]/25 group-hover:shadow-[#e11d48]/50 transition-shadow overflow-hidden">
+            <img 
+              src={`${import.meta.env.BASE_URL}logo.png`} 
+              alt="Pibley Logo" 
+              className="w-full h-full object-cover rounded-[10px] bg-[#0d0d11]" 
+            />
             <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#e11d48] opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#e11d48]"></span>
@@ -51,7 +52,7 @@ export default function Navbar({ onOpenShowreel }) {
               Pibley
             </span>
             <span className="text-[10px] tracking-widest text-[#94a3b8] uppercase font-mono">
-              FILMMAKER & COLORIST
+              FILMMAKER & EDITOR
             </span>
           </div>
         </a>

@@ -53,22 +53,14 @@ export default function App() {
   const services = [
     {
       icon: Film,
-      title: 'Dirección Audiovisual',
-      desc: 'Desarrollo de concepto, tratamiento visual, dirección de actores y supervisión técnica en set para comerciales y ficción.',
-      tags: ['Tratamiento de Guion', 'Puesta en Escena', 'Storyboarding'],
+      title: 'Filmmaker',
+      desc: 'Producción visual de alta calidad adaptada a las necesidades de tu proyecto.'
     },
     {
       icon: Video,
-      title: 'Montaje & Edición Offline',
-      desc: 'Construcción del ritmo dramático, selección quirúrgica de tomas y estructura narrativa ágil para mantener la atención del espectador.',
-      tags: ['Narrativa & Ritmo', 'Sound Design Preliminar', 'Rough Cut & Final Cut'],
-    },
-    {
-      icon: Sliders,
-      title: 'Color Grading & Conformado',
-      desc: 'Gradación de color avanzada en DaVinci Resolve Studio calibrado. Gestión de color ACES/Color Managed y emulación fílmica 35mm.',
-      tags: ['DaVinci Resolve', 'ACES Workflow', 'Print Film Emulation'],
-    },
+      title: 'Edición de videos',
+      desc: 'Montaje, ritmo y narrativa visual para marcas y creadores. Doy el impulso visual y estructural que tus proyectos necesitan.'
+    }
   ];
 
   return (
@@ -148,11 +140,11 @@ export default function App() {
               SERVICIOS AUDIOVISUALES
             </h2>
             <p className="text-sm sm:text-base text-[#94a3b8]">
-              Soluciones integrales de realización y postproducción de estándar cinematográfico para productoras, agencias y artistas independientes.
+              Soluciones integrales de realización y postproducción para productoras, agencias y creadores independientes.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {services.map((srv, idx) => {
               const Icon = srv.icon;
               return (
@@ -166,69 +158,12 @@ export default function App() {
                   <h3 className="text-xl font-bold text-white mb-3 group-hover:text-rose-200 transition-colors">
                     {srv.title}
                   </h3>
-                  <p className="text-sm text-[#94a3b8] leading-relaxed mb-6">
+                  <p className="text-sm text-[#94a3b8] leading-relaxed">
                     {srv.desc}
                   </p>
-                  <div className="flex flex-wrap gap-2">
-                    {srv.tags.map((t, i) => (
-                      <span key={i} className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/5 text-zinc-300 border border-white/5">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
                 </div>
               );
             })}
-          </div>
-        </section>
-
-        {/* Sobre Mí Section Teaser */}
-        <section id="sobre-mi" className="py-24 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto border-t border-white/5 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden glass-card border border-white/10 p-2">
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=80"
-                  alt="Director Pibley"
-                  className="w-full h-full object-cover rounded-2xl filter grayscale contrast-125 hover:grayscale-0 transition-all duration-700"
-                />
-                <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-black/70 backdrop-blur-md border border-white/10">
-                  <p className="text-xs font-mono text-[#e11d48] uppercase tracking-wider font-bold">Suite de Postproducción</p>
-                  <p className="text-sm text-white font-semibold">Monitor de Grado 1 FSI • DaVinci Mini Panel • Control acústico</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill text-xs font-mono text-rose-300 uppercase mb-4">
-                <Award className="w-3.5 h-3.5 text-[#e11d48]" />
-                Bio & Filosofía
-              </div>
-              <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-6">
-                LA NARRATIVA COMIENZA EN LA INTENCIÓN Y SE PERFECCIONA EN EL CORTE
-              </h2>
-              <p className="text-base text-[#94a3b8] leading-relaxed mb-6">
-                Con más de 10 años detrás de cámaras y salas de postproducción, mi enfoque combina la precisión técnica con una sensibilidad estética inquebrantable. Cada corte tiene un propósito emocional y cada curva de luminancia construye la atmósfera de la historia.
-              </p>
-              <div className="grid grid-cols-2 gap-4 text-sm text-zinc-300 font-medium">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#e11d48]" />
-                  Flujo de trabajo HDR / SDR
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#e11d48]" />
-                  Supervisión de VFX & Conformado
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#e11d48]" />
-                  Masterización DCI-P3 para salas
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#e11d48]" />
-                  Dirección técnica en rodaje
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -244,18 +179,18 @@ export default function App() {
                 ¿TIENES UNA HISTORIA QUE CONTAR O UN REEL QUE PULIR?
               </h2>
               <p className="text-base text-[#94a3b8] mb-8">
-                Hablemos sobre las necesidades de tu producción o proyecto. Disponible para dirección freelance, edición a distancia o sesiones de corrección de color supervisadas.
+                Hablemos sobre las necesidades de tu producción o proyecto.
               </p>
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="mailto:contacto@pibley.film"
+                  href="mailto:pibley2@gmail.com"
                   className="px-6 py-3.5 rounded-full bg-gradient-to-r from-[#e11d48] to-[#6366f1] text-white font-bold text-sm tracking-wide shadow-lg shadow-[#e11d48]/30 hover:opacity-95 transition-opacity inline-flex items-center gap-2"
                 >
                   <Mail className="w-4 h-4" />
-                  contacto@pibley.film
+                  pibley2@gmail.com
                 </a>
                 <a
-                  href="https://wa.me/0000000000"
+                  href="https://wa.me/56978940474"
                   target="_blank"
                   rel="noreferrer"
                   className="px-6 py-3.5 rounded-full glass-pill text-white font-semibold text-sm hover:bg-white/10 transition-colors inline-flex items-center gap-2"
