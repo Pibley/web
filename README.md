@@ -21,9 +21,8 @@ Estructura base interactiva y sección **Hero** de alto impacto para director, e
 ### 3. Hero Section Audiovisual
 - **Fondo de video en loop:** Video HTML5 (`autoplay`, `muted`, `loop`, `playsinline`) con overlay de gradientes y control de audio integrado.
 - **Titular dinámico con GSAP:** Efecto de revelado cinematográfico que alterna entre:
-  - `DIRECTOR AUDIOVISUAL`
-  - `EDITOR CINEMATOGRÁFICO`
-  - `COLORISTA DAVINCI`
+  - `PRODUCTOR AUDIOVISUAL`
+  - `EDITOR`
 - **Showreel Spotlight Card:** Tarjeta destacada con micro-animación de radar pulsante sobre el botón de Play y metadatos técnicos (4K DCI, HDR 10-Bit, 02:14 min).
 - **Showreel Lightbox Modal:** Reproductor en ventana modal a pantalla completa con controles de reproducción, atajo para cerrar con tecla `ESC` y especificaciones de cámara (ARRI Alexa Mini LF / RED V-Raptor / DaVinci Resolve).
 - **Barra de Redes Sociales:** Enlaces interactivos con tooltips para **Vimeo**, **YouTube**, **Instagram**, **LinkedIn** y **Behance**.

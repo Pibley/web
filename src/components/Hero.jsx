@@ -16,11 +16,6 @@ import {
 } from 'lucide-react';
 
 // Custom SVG Icons for Vimeo & Behance to maintain premium brand identity
-const VimeoIcon = ({ className }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M22.396 7.164c-.093 2.026-1.507 4.799-4.245 8.32C15.323 19.16 12.93 21 10.97 21c-1.214 0-2.24-1.12-3.079-3.359-.623-2.284-1.246-4.569-1.869-6.853-.685-2.522-1.433-3.784-2.243-3.784-.187 0-.825.39-1.916 1.168L0 6.634C1.308 5.483 2.646 4.347 4.015 3.226c1.9-1.558 3.333-2.384 4.301-2.478 2.398-.249 3.877 1.385 4.437 4.903.623 3.754 1.028 6.089 1.215 7.008.56 2.616 1.183 3.924 1.868 3.924.53 0 1.293-.825 2.29-2.478.996-1.65 1.542-2.912 1.635-3.784.187-1.464-.42-2.196-1.822-2.196-.654 0-1.324.156-2.009.468 1.34-4.392 3.893-6.526 7.662-6.402 2.772.094 4.079 1.76 3.923 5.001z"/>
-  </svg>
-);
 
 const BehanceIcon = ({ className }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -37,9 +32,8 @@ export default function Hero({ onOpenShowreel }) {
 
   // Specialties to cycle dynamically
   const roles = [
-    'DIRECTOR AUDIOVISUAL',
-    'EDITOR CINEMATOGRÁFICO',
-    'COLORISTA DAVINCI'
+    'PRODUCTOR AUDIOVISUAL',
+    'EDITOR'
   ];
 
   useEffect(() => {
@@ -113,11 +107,8 @@ export default function Hero({ onOpenShowreel }) {
   };
 
   const socialLinks = [
-    { name: 'Vimeo', icon: VimeoIcon, href: 'https://vimeo.com', color: 'hover:text-[#1ab7ea]', label: 'Vimeo Showcase' },
-    { name: 'YouTube', icon: Youtube, href: 'https://youtube.com', color: 'hover:text-[#ff0000]', label: 'YouTube 4K Channel' },
-    { name: 'Instagram', icon: Instagram, href: 'https://instagram.com', color: 'hover:text-[#e1306c]', label: '@pibley.film' },
-    { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com', color: 'hover:text-[#0077b5]', label: 'Perfil Profesional' },
-    { name: 'Behance', icon: BehanceIcon, href: 'https://behance.net', color: 'hover:text-[#0057ff]', label: 'Portfolio Behance' },
+    { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/pibley07', color: 'hover:text-[#e1306c]'},
+    { name: 'X', icon: Twitter, href: 'https://x.com/Pibley1', color: 'hover:text-[#e1306c]' },
   ];
 
   return (
@@ -190,9 +181,9 @@ export default function Hero({ onOpenShowreel }) {
 
             {/* Main Headline */}
             <h1 className="hero-anim-item text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-[1.08] mb-4">
-              CREANDO HISTORIAS QUE PERMANECEN EN{' '}
+              Filmmaker &{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-rose-100 to-[#e11d48]">
-                LA MEMORIA
+                Editor Audiovisual.
               </span>
             </h1>
 
@@ -212,7 +203,7 @@ export default function Hero({ onOpenShowreel }) {
 
             {/* Value Proposition Subtitle */}
             <p className="hero-anim-item text-base sm:text-lg text-[#94a3b8] max-w-2xl font-normal leading-relaxed mb-8">
-              Dirección con visión autoral, montaje con ritmo milimétrico y corrección de color de grado cinematográfico en <span className="text-white font-medium">DaVinci Resolve Studio</span> para comerciales, videoclips, series y cine documental.
+              Desarrollo de piezas audiovisuales atractivas y dinámicas que logran mayor conexión con el público.
             </p>
 
             {/* Action Buttons */}
@@ -348,7 +339,7 @@ export default function Hero({ onOpenShowreel }) {
         {/* Social Links Bar */}
         <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center">
           <span className="text-xs uppercase tracking-widest text-[#94a3b8] font-mono mr-2 hidden md:inline">
-            Canales:
+            Redes:
           </span>
           {socialLinks.map((social) => {
             const Icon = social.icon;
