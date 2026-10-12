@@ -39,27 +39,12 @@ export default function Hero({ onOpenShowreel }) {
   const bgVideoRef = useRef(null);
   const cardVideoRef = useRef(null);
   const [isBgMuted, setIsBgMuted] = useState(true);
-  const [isCardPlaying, setIsCardPlaying] = useState(false);
-  const [isCardMuted, setIsCardMuted] = useState(false);
+  const [isVertical, setIsVertical] = useState(false);
 
-  const toggleCardPlay = (e) => {
-    e?.stopPropagation();
-    if (cardVideoRef.current) {
-      if (isCardPlaying) {
-        cardVideoRef.current.pause();
-        setIsCardPlaying(false);
-      } else {
-        cardVideoRef.current.play();
-        setIsCardPlaying(true);
-      }
-    }
-  };
-
-  const toggleCardMute = (e) => {
-    e?.stopPropagation();
-    if (cardVideoRef.current) {
-      cardVideoRef.current.muted = !isCardMuted;
-      setIsCardMuted(!isCardMuted);
+  const handleCardVideoMetadata = (e) => {
+    const { videoWidth, videoHeight } = e.target;
+    if (videoWidth && videoHeight) {
+      setIsVertical(videoHeight > videoWidth);
     }
   };
 
@@ -280,131 +265,67 @@ export default function Hero({ onOpenShowreel }) {
           {/* Right Column: Featured Showreel Spotlight Card */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <div 
-              className="hero-reel-card relative w-full max-w-md rounded-3xl p-3.5 bg-[#14141a] border border-white/15 shadow-2xl group transition-all duration-300 ease-out hover:scale-[1.03] hover:-translate-y-2 hover:border-[#e11d48]/60 hover:shadow-2xl hover:shadow-rose-950/40 cursor-pointer !opacity-100"
-              onClick={toggleCardPlay}
+              className={`hero-reel-card relative w-full ${
+                isVertical ? 'max-w-xs sm:max-w-sm' : 'max-w-xl'
+              } rounded-3xl p-3.5 bg-[#14141a] border border-white/15 shadow-2xl group transition-all duration-300 ease-out hover:scale-[1.03] hover:-translate-y-2 hover:border-[#e11d48]/60 hover:shadow-2xl hover:shadow-rose-950/40 cursor-pointer !opacity-100`}
+              onClick={onOpenShowreel}
             >
               {/* Card Media Container */}
-              <div className="relative aspect-[4/5] sm:aspect-[4/4.8] w-full rounded-2xl overflow-hidden bg-black">
+              <div className={`relative ${
+                isVertical ? 'aspect-[9/16]' : 'aspect-video'
+              } w-full rounded-2xl overflow-hidden bg-black transition-all duration-500`}>
                 
-                {/* Video HTML5 Reproducible en la misma tarjeta */}
+                {/* Video HTML5 (Thumbnail / Preview no reproducible directamente) */}
                 <video
                   ref={cardVideoRef}
                   src={SHOWREEL_VIDEO_URL}
                   poster={SHOWREEL_POSTER_URL}
                   playsInline
-                  loop
-                  onPlay={() => setIsCardPlaying(true)}
-                  onPause={() => setIsCardPlaying(false)}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  muted
+                  preload="metadata"
+                  onLoadedMetadata={handleCardVideoMetadata}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
                 />
 
                 {/* Film Frame Texture & Vignette */}
-                <div className={`absolute inset-0 bg-gradient-to-t from-black via-black/20 to-black/40 pointer-events-none transition-opacity duration-300 ${isCardPlaying ? 'opacity-30 group-hover:opacity-60' : 'opacity-80'}`} />
-
-                {/* Badge Top Left */}
-                <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-[11px] font-mono text-white pointer-events-none">
-                  <span className={`w-2 h-2 rounded-full ${isCardPlaying ? 'bg-emerald-400 animate-pulse' : 'bg-[#e11d48]'}`} />
-                  {isCardPlaying ? 'REPRODUCIENDO' : 'SHOWREEL 2026'}
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40 pointer-events-none transition-opacity duration-300 group-hover:opacity-60" />
 
                 {/* Top Right: Botón para abrir modal a pantalla completa */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onOpenShowreel();
-                  }}
+                <div
                   title="Abrir en pantalla completa (Modal)"
-                  className="absolute top-4 right-4 z-10 p-2 rounded-xl bg-black/60 hover:bg-[#e11d48] border border-white/15 text-white backdrop-blur-md transition-all duration-200"
+                  className="absolute top-4 right-4 z-10 p-2 rounded-xl bg-black/60 group-hover:bg-[#e11d48] border border-white/15 text-white backdrop-blur-md transition-all duration-200"
                 >
                   <Maximize2 className="w-4 h-4" />
-                </button>
+                </div>
 
-                {/* Botón Central de Play/Pausa */}
-                <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 pointer-events-none ${isCardPlaying ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
+                {/* Botón Central de Play (Abre el Modal) */}
+                <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 pointer-events-none">
                   <div className="relative pointer-events-auto">
-                    {/* Anillos de radar pulsantes (solo animados cuando está pausado) */}
-                    {!isCardPlaying && (
-                      <>
-                        <div className="absolute -inset-4 rounded-full bg-[#e11d48]/30 animate-ping opacity-75" />
-                        <div className="absolute -inset-8 rounded-full bg-[#6366f1]/20 animate-pulse-slow" />
-                      </>
-                    )}
+                    {/* Anillos de radar pulsantes */}
+                    <div className="absolute -inset-4 rounded-full bg-[#e11d48]/30 animate-ping opacity-75" />
+                    <div className="absolute -inset-8 rounded-full bg-[#6366f1]/20 animate-pulse-slow" />
                     
-                    {/* Botón Circular Play/Pause */}
-                    <button
-                      onClick={toggleCardPlay}
-                      aria-label={isCardPlaying ? "Pausar video" : "Reproducir video"}
-                      className="relative w-20 h-20 rounded-full bg-gradient-to-tr from-[#e11d48] to-[#6366f1] p-[2px] shadow-2xl transition-transform duration-300 hover:scale-110 focus:outline-none"
+                    {/* Botón Circular Play */}
+                    <div
+                      aria-label="Abrir Showreel"
+                      className="relative w-20 h-20 rounded-full bg-gradient-to-tr from-[#e11d48] to-[#6366f1] p-[2px] shadow-2xl transition-transform duration-300 group-hover:scale-110"
                     >
-                      <div className="w-full h-full rounded-full bg-[#0a0a0a]/80 backdrop-blur-sm flex items-center justify-center hover:bg-[#e11d48] transition-colors">
-                        {isCardPlaying ? (
-                          <Pause className="w-8 h-8 text-white fill-white transition-transform" />
-                        ) : (
-                          <Play className="w-8 h-8 text-white fill-white ml-1 transition-transform" />
-                        )}
+                      <div className="w-full h-full rounded-full bg-[#0a0a0a]/80 backdrop-blur-sm flex items-center justify-center group-hover:bg-[#e11d48] transition-colors">
+                        <Play className="w-8 h-8 text-white fill-white ml-1 transition-transform" />
                       </div>
-                    </button>
+                    </div>
                   </div>
                 </div>
 
-                {/* Bottom Overlay Info & Controles */}
-                <div className="absolute bottom-0 inset-x-0 p-5 bg-gradient-to-t from-black via-black/80 to-transparent flex flex-col justify-end">
-                  <div className="flex items-center justify-between text-xs text-[#94a3b8] font-mono mb-1">
-                    <span>SELECCIÓN 2026</span>
-                    <span>02:14 MIN</span>
-                  </div>
+                {/* Bottom Overlay Info */}
+                <div className="absolute bottom-0 inset-x-0 p-5 bg-gradient-to-t from-black via-black/80 to-transparent flex flex-col justify-end pointer-events-none">
                   <h4 className="text-lg font-bold text-white group-hover:text-rose-200 transition-colors">
                     The Art of Visual Rhythm
                   </h4>
-
-                  {/* Barra de audio y controles rápidos */}
-                  <div className="mt-2.5 pt-2 border-t border-white/10 flex items-center justify-between">
-                    <button
-                      onClick={toggleCardMute}
-                      className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-xs text-white backdrop-blur-md transition-colors"
-                    >
-                      {isCardMuted ? (
-                        <>
-                          <VolumeX className="w-3.5 h-3.5 text-zinc-400" />
-                          <span className="font-mono text-[10px]">Sin sonido</span>
-                        </>
-                      ) : (
-                        <>
-                          <Volume2 className="w-3.5 h-3.5 text-[#e11d48]" />
-                          <span className="font-mono text-[10px]">Con sonido</span>
-                        </>
-                      )}
-                    </button>
-
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onOpenShowreel();
-                      }}
-                      className="text-xs font-mono text-rose-300 hover:text-white flex items-center gap-1 transition-colors"
-                    >
-                      <span>Pantalla completa</span>
-                      <Maximize2 className="w-3 h-3" />
-                    </button>
-                  </div>
+                  <p className="text-xs text-[#94a3b8] font-mono mt-0.5">
+                    Click para reproducir en pantalla completa
+                  </p>
                 </div>
-              </div>
-
-              {/* Pie de tarjeta interactivo */}
-              <div className="mt-3 px-3 py-1 flex items-center justify-between text-xs text-[#94a3b8]">
-                <span className="flex items-center gap-1.5 text-zinc-300">
-                  <Sparkles className="w-3.5 h-3.5 text-[#e11d48]" />
-                  {isCardPlaying ? 'Clic en la tarjeta para pausar' : 'Clic para reproducir directo'}
-                </span>
-                <span 
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onOpenShowreel();
-                  }}
-                  className="text-[#e11d48] font-semibold hover:underline"
-                >
-                  Modal &rarr;
-                </span>
               </div>
             </div>
           </div>
