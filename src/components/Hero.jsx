@@ -154,39 +154,12 @@ export default function Hero({ onOpenShowreel }) {
         <div className="absolute bottom-1/3 -right-32 w-96 h-96 bg-[#6366f1]/15 rounded-full blur-[140px] pointer-events-none" />
       </div>
 
-      {/* Botón flotante para activar audio ambiental en background video */}
-      <button
-        onClick={toggleBgSound}
-        aria-label="Control de audio de fondo"
-        className="absolute top-24 right-6 sm:right-12 z-20 p-2.5 rounded-full bg-black/40 hover:bg-[#e11d48]/40 border border-white/10 text-white/70 hover:text-white backdrop-blur-md transition-all text-xs flex items-center gap-2 group"
-      >
-        {isBgMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 text-[#e11d48]" />}
-        <span className="hidden sm:inline font-mono text-[11px] uppercase tracking-wider">
-          {isBgMuted ? 'Muted' : 'Audio On'}
-        </span>
-      </button>
-
       {/* Main Hero Content */}
       <div className="relative z-10 max-w-7xl mx-auto w-full flex-1 flex flex-col justify-center my-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           
           {/* Left Column: Headlines & Call to Actions */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
-            
-            {/* Cinematic Status Pill */}
-            <div className="hero-badge inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill mb-6">
-              <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#e11d48] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#e11d48]"></span>
-              </span>
-              <span className="text-xs font-semibold text-rose-300 tracking-wider uppercase font-mono">
-                Disponible para proyectos 2026
-              </span>
-              <span className="text-white/20">•</span>
-              <span className="text-xs text-[#94a3b8] font-mono">
-                Worldwide / Remoto & On-Set
-              </span>
-            </div>
 
             {/* Main Headline */}
             <h1 className="hero-anim-item text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-[1.08] mb-4">
@@ -217,27 +190,6 @@ export default function Hero({ onOpenShowreel }) {
 
             {/* Action Buttons */}
             <div className="hero-anim-item flex flex-wrap items-center gap-4 w-full sm:w-auto">
-              {/* Play Showreel Primary Button */}
-              <button
-                onClick={onOpenShowreel}
-                id="hero-play-showreel-btn"
-                className="relative group overflow-hidden rounded-2xl p-[1px] shadow-2xl shadow-[#e11d48]/30 transition-transform active:scale-95"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#e11d48] via-rose-500 to-[#6366f1] rounded-2xl transition-all duration-300 group-hover:blur-sm" />
-                <div className="relative flex items-center gap-3 px-6 py-4 rounded-2xl bg-[#0e0e13] text-white transition-all duration-300 group-hover:bg-[#0e0e13]/85">
-                  <div className="w-9 h-9 rounded-full bg-[#e11d48] flex items-center justify-center text-white shadow-lg shadow-[#e11d48]/50 group-hover:scale-110 transition-transform">
-                    <Play className="w-4 h-4 fill-white ml-0.5" />
-                  </div>
-                  <div className="text-left">
-                    <span className="block text-xs uppercase tracking-wider text-rose-300 font-mono font-bold">
-                      Reel Oficial
-                    </span>
-                    <span className="block text-sm sm:text-base font-bold text-white tracking-wide">
-                      Play Showreel 2026
-                    </span>
-                  </div>
-                </div>
-              </button>
 
               {/* Contact Direct Link */}
               <a
@@ -363,21 +315,6 @@ export default function Hero({ onOpenShowreel }) {
           })}
         </div>
 
-        {/* Scroll Indicator Animado */}
-        <a
-          href="#proyectos"
-          className="group flex items-center gap-3 text-xs uppercase tracking-widest font-mono text-[#94a3b8] hover:text-white transition-colors"
-        >
-          <span>Scroll to explore</span>
-          <div className="w-6 h-10 rounded-full border border-white/20 flex items-start justify-center p-1 group-hover:border-[#e11d48] transition-colors">
-            <motion.div
-              animate={{ y: [0, 14, 0] }}
-              transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
-              className="w-1.5 h-2 rounded-full bg-[#e11d48]"
-            />
-          </div>
-          <ArrowDown className="w-4 h-4 text-[#e11d48] group-hover:translate-y-1 transition-transform" />
-        </a>
 
       </div>
     </section>
