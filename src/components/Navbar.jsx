@@ -52,7 +52,7 @@ export default function Navbar({ onOpenShowreel }) {
               Pibley
             </span>
             <span className="text-[10px] tracking-widest text-[#94a3b8] uppercase font-mono">
-              FILMMAKER & EDITOR
+              FILMMAKER & POST-PRODUCER
             </span>
           </div>
         </a>

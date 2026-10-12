@@ -50,8 +50,8 @@ export default function Hero({ onOpenShowreel }) {
 
   // Specialties to cycle dynamically
   const roles = [
-    'PRODUCTOR AUDIOVISUAL',
-    'EDITOR'
+    'POST-PRODUCER',
+    'FILMMAKER'
   ];
 
   useEffect(() => {
@@ -119,7 +119,7 @@ export default function Hero({ onOpenShowreel }) {
     <section 
       ref={heroRef}
       id="hero"
-      className="relative min-h-screen w-full flex flex-col justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-12 overflow-hidden bg-[#0a0a0a]"
+      className="relative min-h-screen w-full flex flex-col justify-center pt-28 pb-16 px-1 sm:px-6 lg:px-12 overflow-hidden bg-[#0a0a0a]"
     >
       {/* Background Video con Loop y Overlay Oscuro Elegante */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -160,7 +160,7 @@ export default function Hero({ onOpenShowreel }) {
             <h1 className="hero-anim-item text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-[1.08] mb-4">
               Filmmaker &{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-rose-100 to-[#e11d48]">
-                Editor Audiovisual.
+                Post-Producer.
               </span>
             </h1>
 
@@ -172,7 +172,7 @@ export default function Hero({ onOpenShowreel }) {
                   ref={roleTextRef}
                   className="text-transparent bg-clip-text bg-gradient-to-r from-[#e11d48] via-rose-300 to-[#6366f1] drop-shadow-sm font-extrabold tracking-wider"
                 >
-                  DIRECTOR AUDIOVISUAL
+                  POST-PRODUCER
                 </span>
               </div>
               <span className="inline-block w-2.5 h-6 bg-[#e11d48] animate-pulse rounded-sm" />
