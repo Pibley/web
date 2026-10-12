@@ -158,9 +158,9 @@ export default function Hero({ onOpenShowreel }) {
 
             {/* Main Headline */}
             <h1 className="hero-anim-item text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-[1.08] mb-4">
-              Filmmaker &{' '}
+              Editor{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-rose-100 to-[#e11d48]">
-                Post-Producer.
+                Audiovisual.
               </span>
             </h1>
 
