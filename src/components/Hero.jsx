@@ -3,6 +3,8 @@ import gsap from 'gsap';
 import { motion } from 'framer-motion';
 import { 
   Play, 
+  Pause,
+  Maximize2,
   Sparkles, 
   ArrowDown, 
   Instagram, 
@@ -15,8 +17,15 @@ import {
   VolumeX 
 } from 'lucide-react';
 
-// Custom SVG Icons for Vimeo & Behance to maintain premium brand identity
+// =========================================================================
+// 🎥 VIDEO DEL SHOWREEL: Aquí cambias la URL de tu video y la foto de portada
+// Puedes poner un enlace directo de internet (.mp4) o un archivo en la carpeta /public
+// Ejemplo archivo local: '/web/mivideo.mp4'
+// =========================================================================
+export const SHOWREEL_VIDEO_URL = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4";
+export const SHOWREEL_POSTER_URL = "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80";
 
+// Icono personalizado para X (Twitter)
 const XIcon = ({ className }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
@@ -28,7 +37,31 @@ export default function Hero({ onOpenShowreel }) {
   const headlineRef = useRef(null);
   const roleTextRef = useRef(null);
   const bgVideoRef = useRef(null);
+  const cardVideoRef = useRef(null);
   const [isBgMuted, setIsBgMuted] = useState(true);
+  const [isCardPlaying, setIsCardPlaying] = useState(false);
+  const [isCardMuted, setIsCardMuted] = useState(false);
+
+  const toggleCardPlay = (e) => {
+    e?.stopPropagation();
+    if (cardVideoRef.current) {
+      if (isCardPlaying) {
+        cardVideoRef.current.pause();
+        setIsCardPlaying(false);
+      } else {
+        cardVideoRef.current.play();
+        setIsCardPlaying(true);
+      }
+    }
+  };
+
+  const toggleCardMute = (e) => {
+    e?.stopPropagation();
+    if (cardVideoRef.current) {
+      cardVideoRef.current.muted = !isCardMuted;
+      setIsCardMuted(!isCardMuted);
+    }
+  };
 
   // Specialties to cycle dynamically
   const roles = [
@@ -53,15 +86,6 @@ export default function Hero({ onOpenShowreel }) {
         duration: 0.9,
         ease: 'back.out(1.7)',
         delay: 0.2
-      });
-
-      gsap.from('.hero-reel-card', {
-        scale: 0.9,
-        y: 30,
-        opacity: 0,
-        duration: 1.2,
-        ease: 'power3.out',
-        delay: 0.4
       });
 
       // 2. Dynamic Text typing / reveal cycle with GSAP
@@ -256,70 +280,130 @@ export default function Hero({ onOpenShowreel }) {
           {/* Right Column: Featured Showreel Spotlight Card */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <div 
-              className="hero-reel-card relative w-full max-w-md rounded-3xl p-3 glass-card border border-white/10 shadow-2xl group cursor-pointer transition-all duration-500 hover:border-[#e11d48]/50 hover:shadow-rose-950/40"
-              onClick={onOpenShowreel}
+              className="hero-reel-card relative w-full max-w-md rounded-3xl p-3.5 bg-[#14141a] border border-white/15 shadow-2xl group transition-all duration-300 ease-out hover:scale-[1.03] hover:-translate-y-2 hover:border-[#e11d48]/60 hover:shadow-2xl hover:shadow-rose-950/40 cursor-pointer !opacity-100"
+              onClick={toggleCardPlay}
             >
-              {/* Card Media Preview */}
+              {/* Card Media Container */}
               <div className="relative aspect-[4/5] sm:aspect-[4/4.8] w-full rounded-2xl overflow-hidden bg-black">
-                <img
-                  src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80"
-                  alt="Showreel Preview Cinematography"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-90 group-hover:brightness-100"
+                
+                {/* Video HTML5 Reproducible en la misma tarjeta */}
+                <video
+                  ref={cardVideoRef}
+                  src={SHOWREEL_VIDEO_URL}
+                  poster={SHOWREEL_POSTER_URL}
+                  playsInline
+                  loop
+                  onPlay={() => setIsCardPlaying(true)}
+                  onPause={() => setIsCardPlaying(false)}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
 
                 {/* Film Frame Texture & Vignette */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/40" />
+                <div className={`absolute inset-0 bg-gradient-to-t from-black via-black/20 to-black/40 pointer-events-none transition-opacity duration-300 ${isCardPlaying ? 'opacity-30 group-hover:opacity-60' : 'opacity-80'}`} />
 
                 {/* Badge Top Left */}
-                <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-mono text-white">
-                  <span className="w-2 h-2 rounded-full bg-[#e11d48] animate-pulse" />
-                  SHOWREEL 2026
+                <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-[11px] font-mono text-white pointer-events-none">
+                  <span className={`w-2 h-2 rounded-full ${isCardPlaying ? 'bg-emerald-400 animate-pulse' : 'bg-[#e11d48]'}`} />
+                  {isCardPlaying ? 'REPRODUCIENDO' : 'SHOWREEL 2026'}
                 </div>
 
-                {/* Resolution Pill Top Right */}
-                <div className="absolute top-4 right-4 z-10 px-2.5 py-1 rounded-md bg-white/10 backdrop-blur-md border border-white/10 text-[10px] font-mono text-zinc-300">
-                  4K DCI • 10-BIT
-                </div>
+                {/* Top Right: Botón para abrir modal a pantalla completa */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onOpenShowreel();
+                  }}
+                  title="Abrir en pantalla completa (Modal)"
+                  className="absolute top-4 right-4 z-10 p-2 rounded-xl bg-black/60 hover:bg-[#e11d48] border border-white/15 text-white backdrop-blur-md transition-all duration-200"
+                >
+                  <Maximize2 className="w-4 h-4" />
+                </button>
 
-                {/* Central Pulsing Play Button */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative">
-                    {/* Glowing radar rings */}
-                    <div className="absolute -inset-4 rounded-full bg-[#e11d48]/30 animate-ping opacity-75" />
-                    <div className="absolute -inset-8 rounded-full bg-[#6366f1]/20 animate-pulse-slow" />
+                {/* Botón Central de Play/Pausa */}
+                <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 pointer-events-none ${isCardPlaying ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
+                  <div className="relative pointer-events-auto">
+                    {/* Anillos de radar pulsantes (solo animados cuando está pausado) */}
+                    {!isCardPlaying && (
+                      <>
+                        <div className="absolute -inset-4 rounded-full bg-[#e11d48]/30 animate-ping opacity-75" />
+                        <div className="absolute -inset-8 rounded-full bg-[#6366f1]/20 animate-pulse-slow" />
+                      </>
+                    )}
                     
-                    {/* Play Circle */}
-                    <div className="relative w-20 h-20 rounded-full bg-gradient-to-tr from-[#e11d48] to-[#6366f1] p-[2px] shadow-2xl group-hover:scale-110 transition-transform duration-300">
-                      <div className="w-full h-full rounded-full bg-[#0a0a0a]/80 backdrop-blur-sm flex items-center justify-center group-hover:bg-[#e11d48] transition-colors">
-                        <Play className="w-8 h-8 text-white fill-white ml-1 transition-transform group-hover:scale-110" />
+                    {/* Botón Circular Play/Pause */}
+                    <button
+                      onClick={toggleCardPlay}
+                      aria-label={isCardPlaying ? "Pausar video" : "Reproducir video"}
+                      className="relative w-20 h-20 rounded-full bg-gradient-to-tr from-[#e11d48] to-[#6366f1] p-[2px] shadow-2xl transition-transform duration-300 hover:scale-110 focus:outline-none"
+                    >
+                      <div className="w-full h-full rounded-full bg-[#0a0a0a]/80 backdrop-blur-sm flex items-center justify-center hover:bg-[#e11d48] transition-colors">
+                        {isCardPlaying ? (
+                          <Pause className="w-8 h-8 text-white fill-white transition-transform" />
+                        ) : (
+                          <Play className="w-8 h-8 text-white fill-white ml-1 transition-transform" />
+                        )}
                       </div>
-                    </div>
+                    </button>
                   </div>
                 </div>
 
-                {/* Bottom Overlay Info */}
-                <div className="absolute bottom-0 inset-x-0 p-5 bg-gradient-to-t from-black via-black/80 to-transparent">
+                {/* Bottom Overlay Info & Controles */}
+                <div className="absolute bottom-0 inset-x-0 p-5 bg-gradient-to-t from-black via-black/80 to-transparent flex flex-col justify-end">
                   <div className="flex items-center justify-between text-xs text-[#94a3b8] font-mono mb-1">
-                    <span>SELECCIÓN CINE & PUBLICIDAD</span>
+                    <span>SELECCIÓN 2026</span>
                     <span>02:14 MIN</span>
                   </div>
                   <h4 className="text-lg font-bold text-white group-hover:text-rose-200 transition-colors">
                     The Art of Visual Rhythm
                   </h4>
-                  <p className="text-xs text-[#94a3b8] mt-1 line-clamp-1">
-                    Dirección • Edición Offline/Online • Color Grading ARRI LogC
-                  </p>
+
+                  {/* Barra de audio y controles rápidos */}
+                  <div className="mt-2.5 pt-2 border-t border-white/10 flex items-center justify-between">
+                    <button
+                      onClick={toggleCardMute}
+                      className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-xs text-white backdrop-blur-md transition-colors"
+                    >
+                      {isCardMuted ? (
+                        <>
+                          <VolumeX className="w-3.5 h-3.5 text-zinc-400" />
+                          <span className="font-mono text-[10px]">Sin sonido</span>
+                        </>
+                      ) : (
+                        <>
+                          <Volume2 className="w-3.5 h-3.5 text-[#e11d48]" />
+                          <span className="font-mono text-[10px]">Con sonido</span>
+                        </>
+                      )}
+                    </button>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onOpenShowreel();
+                      }}
+                      className="text-xs font-mono text-rose-300 hover:text-white flex items-center gap-1 transition-colors"
+                    >
+                      <span>Pantalla completa</span>
+                      <Maximize2 className="w-3 h-3" />
+                    </button>
+                  </div>
                 </div>
               </div>
 
-              {/* Interactive Micro Label below preview */}
-              <div className="mt-3 px-3 py-2 flex items-center justify-between text-xs text-[#94a3b8]">
+              {/* Pie de tarjeta interactivo */}
+              <div className="mt-3 px-3 py-1 flex items-center justify-between text-xs text-[#94a3b8]">
                 <span className="flex items-center gap-1.5 text-zinc-300">
                   <Sparkles className="w-3.5 h-3.5 text-[#e11d48]" />
-                  Clic para reproducir en pantalla completa
+                  {isCardPlaying ? 'Clic en la tarjeta para pausar' : 'Clic para reproducir directo'}
                 </span>
-                <span className="text-[#e11d48] font-semibold group-hover:translate-x-1 transition-transform">
-                  Ver ahora &rarr;
+                <span 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onOpenShowreel();
+                  }}
+                  className="text-[#e11d48] font-semibold hover:underline"
+                >
+                  Modal &rarr;
                 </span>
               </div>
             </div>
