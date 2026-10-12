@@ -172,7 +172,7 @@ export default function Hero({ onOpenShowreel }) {
                   ref={roleTextRef}
                   className="text-transparent bg-clip-text bg-gradient-to-r from-[#e11d48] via-rose-300 to-[#6366f1] drop-shadow-sm font-extrabold tracking-wider"
                 >
-
+                  POST-PRODUCER
                 </span>
               </div>
               <span className="inline-block w-2.5 h-6 bg-[#e11d48] animate-pulse rounded-sm" />
