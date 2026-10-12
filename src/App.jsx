@@ -9,13 +9,27 @@ import {
   Video, 
   Layers, 
   Mail, 
-  Phone, 
+  Instagram,
   ArrowUpRight, 
   Eye, 
   Award,
   Tv,
   CheckCircle2
 } from 'lucide-react';
+
+// Icono personalizado para WhatsApp
+const WhatsAppIcon = ({ className = "w-5 h-5" }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.276-.1-.476-.15-.676.15-.2.301-.776.978-.952 1.179-.175.2-.351.226-.652.075s-1.27-.468-2.42-1.493c-.894-.798-1.498-1.783-1.674-2.084-.175-.3-.019-.463.132-.612.136-.134.301-.351.451-.527.151-.175.2-.3.301-.501.101-.2.05-.376-.025-.526-.075-.15-.676-1.63-.927-2.234-.244-.588-.493-.508-.676-.517-.175-.009-.376-.011-.577-.011s-.527.075-.802.376c-.276.301-1.053 1.028-1.053 2.508s1.078 2.908 1.229 3.109c.15.2 2.122 3.24 5.14 4.544.718.31 1.279.496 1.716.635.721.23 1.377.197 1.896.12.577-.087 1.78-.727 2.03-1.43.251-.702.251-1.303.176-1.43-.075-.126-.276-.201-.577-.351zM12.04 2C6.51 2 2.02 6.49 2.02 12.02c0 1.98.58 3.82 1.58 5.37L2 22l4.79-1.55c1.5 1 3.3 1.57 5.25 1.57 5.53 0 10.02-4.49 10.02-10.02C22.06 6.49 17.57 2 12.04 2zm0 18.27c-1.75 0-3.38-.55-4.72-1.5l-.34-.24-2.85.92.94-2.77-.26-.37a8.216 8.216 0 0 1-1.28-4.31c0-4.57 3.72-8.29 8.29-8.29 4.57 0 8.29 3.72 8.29 8.29 0 4.58-3.72 8.27-8.27 8.27z"/>
+  </svg>
+);
+
+// Icono personalizado para X (Twitter)
+const XIcon = ({ className = "w-5 h-5" }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+);
 
 export default function App() {
   const [isShowreelOpen, setIsShowreelOpen] = useState(false);
@@ -181,22 +195,50 @@ export default function App() {
               <p className="text-base text-[#94a3b8] mb-8">
                 Hablemos sobre las necesidades de tu producción o proyecto.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                {/* Correo con icono y texto que invita a hacer clic */}
                 <a
                   href="mailto:pibley2@gmail.com"
-                  className="px-6 py-3.5 rounded-full bg-gradient-to-r from-[#e11d48] to-[#6366f1] text-white font-bold text-sm tracking-wide shadow-lg shadow-[#e11d48]/30 hover:opacity-95 transition-opacity inline-flex items-center gap-2"
+                  className="px-6 py-3.5 rounded-full bg-gradient-to-r from-[#e11d48] to-[#6366f1] text-white font-bold text-sm tracking-wide shadow-lg shadow-[#e11d48]/30 hover:opacity-95 hover:scale-[1.02] active:scale-95 transition-all inline-flex items-center gap-2.5 group"
                 >
-                  <Mail className="w-4 h-4" />
-                  pibley2@gmail.com
+                  <Mail className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                  <span>Escríbeme un correo</span>
                 </a>
+
+                {/* WhatsApp: solo logo */}
                 <a
                   href="https://wa.me/56940421175"
                   target="_blank"
                   rel="noreferrer"
-                  className="px-6 py-3.5 rounded-full glass-pill text-white font-semibold text-sm hover:bg-white/10 transition-colors inline-flex items-center gap-2"
+                  aria-label="WhatsApp"
+                  title="WhatsApp"
+                  className="p-3.5 rounded-full glass-pill text-white hover:text-[#25D366] hover:bg-white/10 hover:border-[#25D366]/40 hover:scale-110 active:scale-95 transition-all inline-flex items-center justify-center border border-white/10 shadow-lg group"
                 >
-                  <Phone className="w-4 h-4 text-[#6366f1]" />
-                  WhatsApp Directo
+                  <WhatsAppIcon className="w-5 h-5 transition-transform group-hover:scale-110" />
+                </a>
+
+                {/* Instagram: solo logo */}
+                <a
+                  href="https://instagram.com/pibley07"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Instagram"
+                  title="Instagram"
+                  className="p-3.5 rounded-full glass-pill text-white hover:text-[#e1306c] hover:bg-white/10 hover:border-[#e1306c]/40 hover:scale-110 active:scale-95 transition-all inline-flex items-center justify-center border border-white/10 shadow-lg group"
+                >
+                  <Instagram className="w-5 h-5 transition-transform group-hover:scale-110" />
+                </a>
+
+                {/* Twitter / X: solo logo */}
+                <a
+                  href="https://x.com/Pibley1"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="X (Twitter)"
+                  title="X (Twitter)"
+                  className="p-3.5 rounded-full glass-pill text-white hover:text-white hover:bg-white/10 hover:border-white/40 hover:scale-110 active:scale-95 transition-all inline-flex items-center justify-center border border-white/10 shadow-lg group"
+                >
+                  <XIcon className="w-5 h-5 transition-transform group-hover:scale-110" />
                 </a>
               </div>
             </div>

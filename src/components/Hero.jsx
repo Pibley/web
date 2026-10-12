@@ -115,16 +115,11 @@ export default function Hero({ onOpenShowreel }) {
     }
   };
 
-  const socialLinks = [
-    { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/pibley07', color: 'hover:text-[#e1306c]', label: '@pibley07' },
-    { name: 'X', icon: XIcon, href: 'https://x.com/Pibley1', color: 'hover:text-white', label: '@Pibley1' },
-  ];
-
   return (
     <section 
       ref={heroRef}
       id="hero"
-      className="relative min-h-screen w-full flex flex-col justify-between pt-28 pb-12 px-4 sm:px-6 lg:px-12 overflow-hidden bg-[#0a0a0a]"
+      className="relative min-h-screen w-full flex flex-col justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-12 overflow-hidden bg-[#0a0a0a]"
     >
       {/* Background Video con Loop y Overlay Oscuro Elegante */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -283,39 +278,6 @@ export default function Hero({ onOpenShowreel }) {
           </div>
 
         </div>
-      </div>
-
-      {/* Bottom Bar: Social Links & Animated Scroll Indicator */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6">
-        
-        {/* Social Links Bar */}
-        <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center">
-          <span className="text-xs uppercase tracking-widest text-[#94a3b8] font-mono mr-2 hidden md:inline">
-            Redes:
-          </span>
-          {socialLinks.map((social) => {
-            const Icon = social.icon;
-            return (
-              <a
-                key={social.name}
-                href={social.href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={social.label}
-                title={social.label}
-                className="group relative p-2.5 rounded-xl glass-card text-[#94a3b8] hover:text-white hover:border-[#e11d48]/40 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1"
-              >
-                <Icon className={`w-4 h-4 transition-colors ${social.color}`} />
-                {/* Tooltip on hover */}
-                <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded text-[10px] font-mono text-white bg-black/90 border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-lg">
-                  {social.name}
-                </span>
-              </a>
-            );
-          })}
-        </div>
-
-
       </div>
     </section>
   );
