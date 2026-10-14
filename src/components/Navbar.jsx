@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight, Clapperboard, Sparkles } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Clapperboard } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar({ onOpenShowreel }) {
@@ -71,16 +71,8 @@ export default function Navbar({ onOpenShowreel }) {
           ))}
         </div>
 
-        {/* Acciones de escritorio: Showreel Mini + CTA */}
+        {/* Acciones de escritorio: CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <button
-            onClick={onOpenShowreel}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-[#f8fafc] bg-white/5 hover:bg-white/10 border border-white/10 transition-all hover:border-[#e11d48]/40 hover:text-rose-300"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-[#e11d48]" />
-            <span>Showreel '26</span>
-          </button>
-
           <a
             href="#contacto"
             id="nav-cta-button"
@@ -131,17 +123,6 @@ export default function Navbar({ onOpenShowreel }) {
               ))}
 
               <div className="pt-2 flex flex-col gap-3">
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onOpenShowreel();
-                  }}
-                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-white/5 border border-white/10 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
-                >
-                  <Sparkles className="w-4 h-4 text-[#e11d48]" />
-                  Ver Showreel 2026
-                </button>
-
                 <a
                   href="#contacto"
                   onClick={() => setMobileMenuOpen(false)}

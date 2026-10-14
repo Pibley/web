@@ -74,7 +74,7 @@ export default function Hero({ onOpenShowreel }) {
       });
 
       // 2. Dynamic Text typing / reveal cycle with GSAP
-      let currentRoleIndex = 0;
+      let currentRoleIndex = 1;
       const cycleRole = () => {
         if (!roleTextRef.current) return;
 
@@ -158,9 +158,11 @@ export default function Hero({ onOpenShowreel }) {
 
             {/* Main Headline */}
             <h1 className="hero-anim-item text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-[1.08] mb-4">
-              Editor{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-rose-100 to-[#e11d48]">
-                Audiovisual.
+              <span className="block text-white">
+                Filmmaker &
+              </span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-rose-100 to-[#e11d48]">
+                Editor audiovisual
               </span>
             </h1>
 
